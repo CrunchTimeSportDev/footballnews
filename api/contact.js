@@ -58,7 +58,18 @@ export default async function handler(req, res) {
       })
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error('Web3Forms returned non-JSON response:', responseText.substring(0, 200));
+      return res.status(500).json({
+        success: false,
+        error: 'Email service error. Please try again later.'
+      });
+    }
 
     if (data.success) {
       return res.status(200).json({
