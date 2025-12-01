@@ -54,7 +54,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         email: email,
-        listIds: [4], // Football News list - UPDATE WITH YOUR ACTUAL LIST ID
+        listIds: [8], // Football News list
         updateEnabled: true
       })
     });
