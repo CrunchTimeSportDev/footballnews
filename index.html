@@ -63,8 +63,10 @@
             <h3>Get In Touch</h3>
             <p class="section-description">Have questions or want to partner with us? Send us a message.</p>
 
-            <!-- Contact Form (uses serverless function) -->
-            <form id="contactForm" class="contact-form">
+            <!-- Contact Form (Web3Forms - client-side) -->
+            <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="1bb928cd-6393-49fe-a02b-b931ce13d127">
+                <input type="hidden" name="subject" value="New Contact Form Submission from Football News">
                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
                 <div class="form-row">
@@ -131,6 +133,9 @@
             </nav>
         </footer>
     </main>
+
+    <!-- Web3Forms Script -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>

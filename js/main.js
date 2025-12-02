@@ -189,18 +189,12 @@
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
 
-            // Submit form via serverless function (keeps API key secure)
+            // Submit form via Web3Forms (client-side)
             try {
-                const response = await fetch('/api/contact', {
+                const formData = new FormData(contactForm);
+                const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: nameInput.value.trim(),
-                        email: emailInput.value.trim(),
-                        message: messageInput.value.trim()
-                    })
+                    body: formData
                 });
 
                 const data = await response.json();
@@ -209,7 +203,7 @@
                     showResult(resultElement, 'Thank you! Your message has been sent successfully.', 'success');
                     contactForm.reset();
                 } else {
-                    showResult(resultElement, data.error || 'Oops! Something went wrong. Please try again.', 'error');
+                    showResult(resultElement, 'Oops! Something went wrong. Please try again.', 'error');
                 }
             } catch (error) {
                 showResult(resultElement, 'Network error. Please check your connection and try again.', 'error');
